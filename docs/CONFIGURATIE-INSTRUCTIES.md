@@ -65,6 +65,29 @@ Pas aan naar:
 ],
 ```
 
+## Lokale Kanban-ontwikkeling
+
+De frontend op `http://localhost:3000` gebruikt de Laravel-backend op
+`http://localhost:8000`. Configureer `FRONTEND_URL=http://localhost:3000`
+voor CORS en voeg `localhost:3000` toe aan `SANCTUM_STATEFUL_DOMAINS`.
+Laravel's `bootstrap/app.php` moet `$middleware->statefulApi()` registreren
+zodat de API-sessiecookie wordt herkend.
+
+Voer vanuit de backend uit:
+
+```bash
+php artisan migrate
+php artisan serve --port=8000
+```
+
+De Kanban-migratie maakt het gedeelde bord en de eerste voorbeeldkolommen en
+kaarten aan. Start vervolgens de frontend met
+`NEXT_PUBLIC_API_URL=http://localhost:8000` in `.env.local`. Voer de Kanban-API-tests uit met:
+
+```bash
+php artisan test tests/Feature/KanbanApiTest.php
+```
+
 ## 5. Eén admin-gebruiker aanmaken (je bent immers de enige gebruiker)
 
 Via `php artisan tinker` op de server (als je shell-toegang hebt), of via een kleine seeder:

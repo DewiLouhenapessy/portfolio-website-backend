@@ -15,18 +15,18 @@ return [
     |
     */
 
-'paths' => ['api/*', 'sanctum/csrf-cookie', 'admin/*', 'login', 'logout'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie', 'admin/*', 'login', 'logout'],
 
-'allowed_methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    'allowed_methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 
-'allowed_origins' => ['http://localhost:3000'],
+    'allowed_origins' => array_filter(explode(',', env('FRONTEND_URL', 'http://localhost:3000'))),
 
-'allowed_headers' => ['*'],
+    'allowed_headers' => ['*'],
 
-'exposed_headers' => [],
+    'exposed_headers' => [],
 
-'max_age' => 0,
+    'max_age' => 0,
 
-'supports_credentials' => true,
+    'supports_credentials' => true,
 
 ];
